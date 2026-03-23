@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+void input (int& father, int& mother);
+void output (int& father, int& mother);
+void repeat (int& repeat);
+
+int main()
+{
+cout << "===============================\n";
+cout << "[ Color blindness porbability ]\n";
+cout << "===============================\n";
+int father;
+int mother;
+int repeat;
+
+input(father, mother);
+output(father, mother);
+}
+
+void input (int& father, int& mother) {
+    cout << "Is the father color blind? \n";
+    cout << "type 1 if he has normal vission, type 2 if is color blind: ";
+ while (!(cin >> father) || (!(1 || 2))) {
+		cout << "Invalid input. Try again: "; 
+		cin.clear();
+		cin.ignore(10000, '\n');
+ }
+		
+	cout << "Is the mother color blind, a carrier, or has normal vision? \n";
+    cout << "type 1 if she has normal vission, type 2 if she's is a carrier, type 3 if she's is color blind: ";
+ while (!(cin >> mother) || (!(1 || 3))) {
+		cout << "Invalid input. Try again: "; 
+		cin.clear();
+		cin.ignore(10000, '\n');
+	}
+}
+
+void output (int& father, int& mother) {
+    if (father == 1 & mother == 1) {
+        cout << "     X      Y   \n";
+        cout << " =================\n";
+        cout << "X|   XX  |  XY   |\n";
+        cout << " |===============|\n";
+        cout << "X|   XX  |  XY   |\n";
+        cout << " =================\n";
+        cout << "there is a 50% the baby is a none color blind boy, and a 50% chance it's a non color blind girl.";
+    }
+    else if (father == 2 & mother == 1) {
+        cout << "     Xc      Y   \n";
+        cout << " =================\n";
+        cout << "X|   XcX  |  XY  |\n";
+        cout << " |===============|\n";
+        cout << "X|   XcX  |  XY  |\n";
+        cout << " =================\n";
+        cout << "there is a 50% the baby is a none color blind boy, and a 50% chance it's a color blind carrier girl."; 
+}
+else if (father == 1 & mother == 2) {
+        cout << "      X       Y   \n";
+        cout << "  =================\n";
+        cout << "Xc|   XcX  | XcY  |\n";
+        cout << "  |===============|\n";
+        cout << "X |   XX   |  XY  |\n";
+        cout << "  =================\n";
+        cout << "there is a 50% the baby is a none color blind boy, and a 50% chance it's a color blind carrier girl."; 
+}
+}
