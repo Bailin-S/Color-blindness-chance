@@ -1,94 +1,117 @@
 #include <iostream>
 using namespace std;
-void input (int& father, int& mother);
-void output (int& father, int& mother);
-void repeat (int& repeat);
 
-int main()
+void input (int& father, int& mother); // This runs the input acting as another domain
+
+void output (int& father, int& mother); // this runs the output of your in input
+
+void repeatYorN (int& repeat); // this runs the repeat question
+
+int main() // runs the menu and tells what is going to be displayed
 {
-cout << "===============================\n";
-cout << "[ Color blindness porbability ]\n";
-cout << "===============================\n";
-int father;
-int mother;
-int repeat;
+	cout << "===============================\n";
+	cout << "[ Color blindness probability ]\n";
+	cout << "===============================\n";
+	// title of the project
+	int father;
+	int mother;
+	int repeat;
 
-input(father, mother);
-output(father, mother);
+	do {
+
+		input(father, mother); // runs the user input choices
+		output(father, mother); // runs the output depending on the input
+		repeatYorN(repeat); // gives the user the option to repeat the sequence when ran
+	} while (repeat == 1);
+	return 0;
+	// repeat statement to start over or end the sequence
 }
 
 void input (int& father, int& mother) {
-    cout << "Is the father color blind? \n";
-    cout << "type 1 if he has normal vission, type 2 if is color blind: ";
- while (!(cin >> father) || (!(1 || 2))) {
-		cout << "Invalid input. Try again: "; 
-		cin.clear();
-		cin.ignore(10000, '\n');
- }
-		
-	cout << "Is the mother color blind, a carrier, or has normal vision? \n";
-    cout << "type 1 if she has normal vission, type 2 if she's is a carrier, type 3 if she's is color blind: ";
- while (!(cin >> mother) || (!(1 || 3))) {
-		cout << "Invalid input. Try again: "; 
-		cin.clear();
-		cin.ignore(10000, '\n');
+	cout << "Is the father color blind? \n";
+	cout << "type 1 if he has normal vision, type 2 if he is color blind: ";
+	// display message of asking what vision does the father have
+	while (!(cin >> father) || father > 2 || father < 1) { // limiting valid in puts
+		cout << "Invalid input. Type 1 or 2: ";
+		cin.clear(); // clear statement for invalid inputs
+		cin.ignore(10000, '\n'); // repeat if invalid
+	}
+
+	cout << "Is the mother color blind, a carrier, or does she have normal vision? \n";
+	cout << "type 1 if she has normal vision, type 2 if she's is a carrier, type 3 if she's is color blind: ";
+	// display message of asking what vision does the mother have
+	while (!(cin >> mother) || mother > 3 || mother < 1) { // limiting valid in puts
+		cout << "Invalid input. Type 1, 2 or 3: ";
+		cin.clear(); // clear statement for invalid inputs
+		cin.ignore(10000, '\n'); // repeat if invalid
 	}
 }
 
-void output (int& father, int& mother) {
-    if (father == 1 & mother == 1) {
-        cout << "     X      Y   \n";
-        cout << " =================\n";
-        cout << "X|   XX  |  XY   |\n";
-        cout << " |===============|\n";
-        cout << "X|   XX  |  XY   |\n";
-        cout << " =================\n";
-        cout << "There is a 50% the baby is a none color blind boy, and a 50% chance it's a non color blind girl.";
-    }
-    else if (father == 2 & mother == 1) {
-        cout << "     Xc      Y   \n";
-        cout << " =================\n";
-        cout << "X|   XcX  |  XY  |\n";
-        cout << " |===============|\n";
-        cout << "X|   XcX  |  XY  |\n";
-        cout << " =================\n";
-        cout << "There is a 50% the baby is a none color blind boy, and a 50% chance it's a color blind carrier girl."; 
+void output (int& father, int& mother) { // output for the choices 
+	if (father == 1 & mother == 1) { // if statement for what what will be display based on input values
+		cout << "     X      Y   \n";
+		cout << " =================\n";
+		cout << "X|   XX  |  XY   |\n";
+		cout << " |===============|\n";
+		cout << "X|   XX  |  XY   |\n";
+		cout << " =================\n";
+		cout << "There is a 50% chance the baby is a non color blind boy, and a 50% chance it's a non color blind girl.\n";
+	} // display punnet square and percent chance for each of the results
+	else if (father == 2 & mother == 1) { // if statement for what what will be display based on input values
+		cout << "     Xc      Y   \n";
+		cout << " =================\n";
+		cout << "X|   XcX  |  XY  |\n";
+		cout << " |===============|\n";
+		cout << "X|   XcX  |  XY  |\n";
+		cout << " =================\n";
+		cout << "There is a 50% chance the baby is a non color blind boy, and a 50% chance it's a color blind carrier girl.\n";
+	} // display punnet square and percent chance for each of the results
+	else if (father == 1 & mother == 2) { // if statement for what what will be display based on input values
+		cout << "      X       Y   \n";
+		cout << "  =================\n";
+		cout << "Xc|   XcX  | XcY  |\n";
+		cout << "  |===============|\n";
+		cout << "X |   XX   |  XY  |\n";
+		cout << "  =================\n";
+		cout << "There is a 25% chance the baby is a color blind boy, a 25% chance it's a color blind carrier girl.\n";
+		cout << "a 25% chance it's a non color blind boy, and a 25% chance it's a non color blind girl";
+	} // display punnet square and percent chance for each of the results
+	else if (father == 2 & mother == 2) { // if statement for what what will be display based on input values
+		cout << "      Xc       Y   \n";
+		cout << "  =================\n";
+		cout << "Xc|   XcXc  | XcY |\n";
+		cout << "  |===============|\n";
+		cout << "X |   XcX   |  XY |\n";
+		cout << "  =================\n";
+		cout << "There is a 25% the baby is a non color blind boy, a 25% chance it's a color blind carrier girl,\n";
+		cout << "a 25% chance it's a color blind boy, and a 25% chance that it is a non color blind boy.\n";
+	} // display punnet square and percent chance for each of the results
+	else if (father == 1 & mother == 3) { // if statement for what what will be display based on input values
+		cout << "      X       Y   \n";
+		cout << "  =================\n";
+		cout << "Xc|  XcX   | XcY  |\n";
+		cout << "  |===============|\n";
+		cout << "Xc|  XcX   | XcY  |\n";
+		cout << "  =================\n";
+		cout << "There is a 50% chance the baby is a color blind boy, and a 50% chance it's a color blind carrier girl.\n";
+	} // display punnet square and percent chance for each of the results
+	else if (father == 2 & mother == 3) { // if statement for what what will be display based on input values
+		cout << "      Xc       Y   \n";
+		cout << "  =================\n";
+		cout << "Xc|  XcXc  | XcY  |\n";
+		cout << "  |===============|\n";
+		cout << "Xc|  XcXc  | XcY  |\n";
+		cout << "  =================\n";
+		cout << "There is a 50% chance the baby is a color blind boy, and a 50% chance it's a color blind girl.\n";
+	} // display punnet square and percent chance for each of the results
 }
-else if (father == 1 & mother == 2) {
-        cout << "      X       Y   \n";
-        cout << "  =================\n";
-        cout << "Xc|   XcX  | XcY  |\n";
-        cout << "  |===============|\n";
-        cout << "X |   XX   |  XY  |\n";
-        cout << "  =================\n";
-        cout << "There is a 50% the baby is a none color blind boy, and a 50% chance it's a color blind carrier girl."; 
-}
-else if (father == 2 & mother == 2) {
-        cout << "      Xc       Y   \n";
-        cout << "  =================\n";
-        cout << "Xc|   XcXc  | XcY |\n";
-        cout << "  |===============|\n";
-        cout << "X |   XcX   |  XY |\n";
-        cout << "  =================\n";
-        cout << "There is a 25% the baby is a none color blind boy, a 25% chance it's a color blind carrier girl,\n";
-        cout << "a 25% cahnce it's a color blind boy, and a 25% chance that it is a non color blind boy.";
-}
-else if (father == 1 & mother == 3) {
-        cout << "      X       Y   \n";
-        cout << "  =================\n";
-        cout << "Xc|  XcX   | XcY  |\n";
-        cout << "  |===============|\n";
-        cout << "Xc|  XcX   | XcY  |\n";
-        cout << "  =================\n";
-        cout << "There is a 50 the baby is a color blind boy, and a 50% chance it's a color blind carrier girl.\n";
-}
-else if (father == 2 & mother == 3) {
-        cout << "      Xc       Y   \n";
-        cout << "  =================\n";
-        cout << "Xc|  XcXc  | XcY  |\n";
-        cout << "  |===============|\n";
-        cout << "Xc|  XcXc  | XcY  |\n";
-        cout << "  =================\n";
-        cout << "There is a 50 the baby is a color blind boy, and a 50% chance it's a color blind girl.\n";
-}
+
+void repeatYorN(int& repeat) { // repeat question
+	cout << "Do you want to continue?\n"; // display continue question
+	cout << "Type 1 if yes, type 2 if no: "; // input for the repeat variable
+	while (!(cin >> repeat) || repeat > 2 || repeat < 1) { // failure statement if a invalid input is inputted
+		cout << "Invalid input. Type 1 or 2: "; // display if invalid input was set
+		cin.clear(); // clear input
+		cin.ignore(10000, '\n');
+	}
 }
