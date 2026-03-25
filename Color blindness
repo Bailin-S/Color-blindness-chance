@@ -13,9 +13,9 @@ int main() // runs the menu and tells what is going to be displayed
 	cout << "[ Color blindness probability ]\n";
 	cout << "===============================\n";
 	// title of the project
-	int father;
-	int mother;
-	int repeat;
+	int father; // father variable
+	int mother; // mother variable
+	int repeat; // repeat variable
 
 	do {
 
